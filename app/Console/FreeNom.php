@@ -202,7 +202,7 @@ class FreeNom
             }
 
             $domainInfo .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>还有<span style="font-weight: bold; font-size: 16px;">%d</span>天到期，', $domain, $domain, $days);
-            $domainInfoTG .= sprintf('ドメイン: [%s](http://%s)はあと*%d*日で期限切れ，', $domain, $domain, $days);
+            $domainInfoTG .= sprintf('ドメイン: [%s](http://%s)はあと*%d*日で期限切れ♪♫♬', $domain, $domain, $days);
         }
         if ($notRenewed || $renewed) {
             Mail::send(
@@ -232,7 +232,7 @@ class FreeNom
                     '',
                     'notice'
                 );
-                TelegramBot::send("ご報告いたします：\n\n" . $domainInfoTG);
+                TelegramBot::send("ご報告いたします♪♪~\n\n" . $domainInfoTG);
             } else {
                 system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
             }
