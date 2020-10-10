@@ -113,7 +113,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
     <summary>设置163邮箱</summary>
 <br>
 
-在`设置>POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
+在`设置POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
 
 ![163邮箱配置01](https://s2.ax1x.com/2020/01/31/13WKZn.png "163邮箱配置01")
 
