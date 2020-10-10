@@ -194,7 +194,7 @@ class FreeNom
                     $notRenewed .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>', $domain, $domain);
                     $notRenewedTG .= sprintf('[%s](http://%s)  ', $domain, $domain);
                 } else {
-                    $result .= sprintf("%s续期成功\n", $domain);
+                    $result .= sprintf("ドメイン: %sが更新されます\n", $domain);
                     $renewed .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>', $domain, $domain);
                     $renewedTG .= sprintf('[%s](http://%s)  ', $domain, $domain);
                     continue;
@@ -202,10 +202,8 @@ class FreeNom
             }
 
             $domainInfo .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>还有<span style="font-weight: bold; font-size: 16px;">%d</span>天到期，', $domain, $domain, $days);
-            $domainInfoTG .= sprintf('[%s](http://%s)还有*%d*天到期，', $domain, $domain, $days);
+            $domainInfoTG .= sprintf('ドメイン: [%s](http://%s)はあと*%d*日で期限切れ，', $domain, $domain, $days);
         }
-        $domainInfoTG .= "更多信息可以参考[Freenom官网](https://my.freenom.com/domains.php?a=renewals)哦~\n\n（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为0，使程序只在有续期操作时才推送）";
-
         if ($notRenewed || $renewed) {
             Mail::send(
                 '主人，我刚刚帮你续期域名啦~',
@@ -217,8 +215,8 @@ class FreeNom
                 ]
             );
             TelegramBot::send(sprintf(
-                "主人，我刚刚帮你续期域名啦~\n\n%s%s\n另外，%s",
-                $renewedTG ? sprintf("续期成功：%s\n", $renewedTG) : '',
+                "ご主人様~\n\n%s%s\nそして %s",
+                $renewedTG ? sprintf("ドメイン: %sが更新されます\n", $renewedTG) : '',
                 $notRenewedTG ? sprintf("续期失败：%s\n", $notRenewedTG) : '',
                 $domainInfoTG
             ));
@@ -234,7 +232,7 @@ class FreeNom
                     '',
                     'notice'
                 );
-                TelegramBot::send("报告，今天没有域名需要续期，所有域名情况如下：\n\n" . $domainInfoTG);
+                TelegramBot::send("ご報告いたします：\n\n" . $domainInfoTG);
             } else {
                 system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
             }
